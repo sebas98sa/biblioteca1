@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Revistas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Listado de Revistas</h1>
+
+    <div class="mb-3">
+        <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+        <a th:href="@{/revistas/nuevo}" class="btn btn-primary">Nueva Revista</a>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Búsqueda</h5>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/revistas/buscar}" method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Buscar por categoría">
+                </div>
+                <div class="col-md-4">
+                    <label for="editorial" class="form-label">Editorial</label>
+                    <input type="text" class="form-control" id="editorial" name="editorial" placeholder="Buscar por editorial">
+                </div>
+                <div class="col-md-3">
+                    <label for="autor" class="form-label">Autor</label>
+                    <input type="text" class="form-control" id="autor" name="autor" placeholder="Buscar por autor">
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoría</th>
+                <th>Número</th>
+                <th>Editorial</th>
+                <th>Año Publicación</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="revista : ${revistas}">
+                <td th:text="${revista.id}"></td>
+                <td th:text="${revista.titulo}"></td>
+                <td th:text="${revista.autor}"></td>
+                <td th:text="${revista.categoria}"></td>
+                <td th:text="${revista.numero}"></td>
+                <td th:text="${revista.editorial}"></td>
+                <td th:text="${revista.anoPublicacion}"></td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a th:href="@{/revistas/editar/{id}(id=${revista.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/revistas/eliminar/{id}(id=${revista.id})}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Estás seguro de eliminar esta revista?')">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(revistas)}">
+                <td colspan="8" class="text-center">No hay revistas disponibles</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
