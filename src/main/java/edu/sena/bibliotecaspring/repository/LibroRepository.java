@@ -10,4 +10,5 @@ import java.util.List;
 public interface LibroRepository extends JpaRepository<Libro, Integer> {  // Cambiado a Integer
     List<Libro> findByTituloContaining(String titulo);
     List<Libro> findByAutorContaining(String autor);
+    List<Libro> findByGeneroContaining(String genero);
 }

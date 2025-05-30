@@ -30,6 +30,14 @@ public class Libro extends ElementoBiblioteca {
         this.editorial = editorial;
     }
 
+    public static int getDuracion() {
+        return 0; // Este método no es relevante para la clase Libro, pero se deja para cumplir con la interfaz ElementoBiblioteca
+    }
+
+    public static Object builder() {
+        return new Libro(); // Método para crear un nuevo objeto Libro usando el patrón Builder
+    }
+
     // Getters y setters
     public String getIsbn() {
         return isbn;
@@ -66,5 +74,9 @@ public class Libro extends ElementoBiblioteca {
     @Override
     public String toString() {
         return super.toString() + " - ISBN: " + isbn + " - Editorial: " + editorial;
+    }
+
+    public static void setDuracion(int i) {
+
     }
 }

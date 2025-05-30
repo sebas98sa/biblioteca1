@@ -45,4 +45,10 @@ public class LibroService {
     public List<Libro> findByAutor(String autor) {
         return libroRepository.findByAutorContaining(autor);
     }
+
+    public List<Libro> findByGenero(String genero) { return libroRepository.findByGeneroContaining(genero);
+    }
+
+    public List<Libro> findByDirector(String director) {return libroRepository.findByAutorContaining(director); // Asumiendo que el director es el autor
+    }
 }
